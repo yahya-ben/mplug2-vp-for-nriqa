@@ -1,10 +1,6 @@
 # 📄 PixelPrompt: Parameter-Efficient NR-IQA via Pixel-Space Visual Prompts in Multimodal LLMs
 
-![teaser-image](./assets/teaser.png)  
-
----
-
-## ✍️ Authors
+![teaser-image](./readme_assets/hero_figure.png)  
 
 - [Yahya Benmahane](https://www.linkedin.com/in/yahya-benmahane/) — Computer Science Departement | Faculty of Sciences, Rabat
 - [Mohammed El Hassouni](https://scholar.google.com/citations?user=aIwj9L0AAAAJ&hl=fr) — Professor, Computer Science, Mohammed V University in Rabat, Morocco  
