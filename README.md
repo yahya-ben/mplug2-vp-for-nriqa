@@ -1,5 +1,16 @@
 # PixelPrompt: Parameter-Efficient NR-IQA via Pixel-Space Visual Prompts in Multimodal LLMs
 
+<!-- TODO: Add paper image/figure here -->
+![PixelPrompt Overview](path/to/your/figure.png)
+
+<!-- TODO: Add authors with links -->
+**Authors**: [Author Name 1](link), [Author Name 2](link), [Author Name 3](link)
+
+<!-- TODO: Add abstract -->
+**Abstract**: [Insert your paper abstract here]
+
+---
+
 This repository implements **PixelPrompt**, a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach optimizes a negligible number of learnable parameters while keeping the base MLLM entirely frozen.
 
 ## 🔥 Key Features
@@ -76,17 +87,27 @@ wget https://huggingface.co/datasets/chaofengc/IQA-PyTorch-Datasets/resolve/main
 unzip AGIQA-3K.zip
 ```
 
-### Dataset Structure
+### Dataset Organization
 
-Organize your datasets in the `data/` folder:
+After extraction, organize your datasets in the `data/` folder as follows:
+
 ```
 data/
-├── split_agiqa3k.csv
-├── split_kadid10k.csv
 ├── kadid10k/
+│   ├── images/           # All KADID-10k images
+│   └── split_kadid10k.csv
 ├── koniq10k/
+│   ├── 512x384/          # KonIQ-10k images (comes with own split)
+│   └── koniq10k_*.csv    # Original split files
 └── AGIQA-3K/
+    ├── images/           # All AGIQA-3k images
+    └── split_agiqa3k.csv
 ```
+
+**Important Notes:**
+- **KADID-10k**: Move `split_kadid10k.csv` into the `kadid10k/` folder
+- **KonIQ-10k**: Uses its own original split files, no need to move
+- **AGIQA-3k**: Move `split_agiqa3k.csv` into the `AGIQA-3K/` folder; images are in the `images/` subfolder
 
 ## 🏃 Quick Start
 
@@ -105,7 +126,7 @@ Create a custom configuration file based on the examples in `configs/`:
 
 ```bash
 # Copy an existing config
-cp configs/other_models_configs/mplug2_experiment.yaml configs/my_experiment.yaml
+cp configs/mplug_owl2_configs/SGD_mplug2_exp_01_kadid_padding_10px_add.yaml configs/my_experiment.yaml
 # Edit the configuration
 # Run training by modifying the config path in trainer.py
 ```
@@ -144,10 +165,9 @@ cd src
 python trainer.py <experiment_number>
 ```
 
-Where `<experiment_number>` corresponds to predefined experiments (1-45):
-- Experiments 1-21: Addition mode prompts
-- Experiments 22-42: Multiplication mode prompts  
-- Experiments 43-45: Other model variants
+Where `<experiment_number>` corresponds to predefined experiments (1-33):
+- All experiments use mPLUG-Owl2-7B with different visual prompt configurations
+- Covers all combinations of datasets, prompt types, sizes, and modes
 
 ## 🔍 Inference
 
@@ -177,7 +197,7 @@ The inference script outputs:
 ```yaml
 experiment_name: "my_experiment"
 model:
-  vlm_name: "mplug2"  # or "llava15"
+  vlm_name: "mplug2"  # mPLUG-Owl2-7B
   visual_prompt:
     type: "padding"    # padding, patch_center, patch_topleft, overlay
     args:
@@ -266,35 +286,17 @@ Applies learnable prompt across entire image.
 │   ├── collators.py            # Data collation
 │   └── utils.py                # Utility functions
 ├── configs/
-│   ├── mplug_owl2_configs/     # mPLUG-Owl2 configurations
-│   └── other_models_configs/   # Other model configurations
+│   └── mplug_owl2_configs/     # mPLUG-Owl2 configurations (33 experiments)
 ├── data/                       # Dataset files and splits
 ├── outputs/                    # Training outputs and checkpoints
 └── README.md
 ```
 
-## 🛠️ Key Implementation Details
-
-### HuggingFace Trainer Integration
-- Custom `VLMWithVisualPrompt` model combining frozen MLLM + trainable prompts
-- Custom loss computation using MSE regression
-- Custom metrics computation (SROCC, PLCC)
-
-### Gradient Flow Preservation  
-- Removed standard image processors to maintain gradient flow through pixels
-- PyTorch-only preprocessing pipeline
-- Visual prompts applied via tensor addition/multiplication
-
-### Quality Score Extraction
-- Extracts logits for quality-related tokens ("good", "bad", etc.)
-- Applies softmax normalization to compute scalar quality scores
-- Supports multiple token ensemble strategies
-
 ## ⚠️ Important Notes
 
 1. **GPU Memory**: Training requires significant GPU memory due to MLLM size
 2. **Gradient Flow**: Standard image processors break gradients - our implementation preserves them
-3. **Model Selection**: mPLUG-Owl2 significantly outperforms LLaVA-1.5 in our experiments
+3. **Model Focus**: This codebase focuses on mPLUG-Owl2-7B for best performance
 4. **Hyperparameters**: Learning rates and batch sizes are dataset-specific
 
 ## 🔬 Reproducing Results
@@ -302,7 +304,7 @@ Applies learnable prompt across entire image.
 To reproduce the paper results:
 
 1. **Setup environment** following installation instructions
-2. **Download datasets** and place in `data/` folder  
+2. **Download and organize datasets** in `data/` folder following the structure above
 3. **Run predefined experiments**:
    ```bash
    # Best results: 30px padding with addition
@@ -342,4 +344,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
-- IQA-PyTorch-Datasets for providing standardized dataset splits 
+- IQA-PyTorch-Datasets for providing standardized dataset splits
+- The visual prompting community for pioneering work on visual prompts (link to their GitHub will be added) 
