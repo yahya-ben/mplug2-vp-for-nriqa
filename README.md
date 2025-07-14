@@ -34,6 +34,7 @@ This repository implements **PixelPrompt**, a novel parameter-efficient adaptati
 - [Configuration](#configuration)
 - [Visual Prompt Types](#visual-prompt-types)
 - [Results](#results)
+- [Contact](#contact)
 - [Citation](#citation)
 
 ## 🚀 Installation
@@ -120,25 +121,37 @@ We provide pre-trained visual prompt checkpoints on **HuggingFace Hub** for imme
 
 ### Available Checkpoints
 
-| Dataset | Visual Prompt | Size | Mode | SROCC | Download |
-|---------|---------------|------|------|-------|----------|
-| KADID-10k | Padding | 30px | Add | 0.924 | [checkpoint](https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/kadid_padding_30px_add.pth) |
-| KonIQ-10k | Padding | 30px | Add | 0.852 | [checkpoint](https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/koniq_padding_30px_add.pth) |
-| AGIQA-3k | Padding | 30px | Add | 0.810 | [checkpoint](https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/agiqa_padding_30px_add.pth) |
+The checkpoints are provided as `visual_prompt_ckpt_trained_on_mplug2.zip` containing training experiment folders with checkpoint directories (`checkpoint-xxxx`). Each experiment folder contains multiple epochs, and the best performing checkpoint can be identified from the `best_model_checkpoint` info in the final checkpoint folder.
+
+| Dataset | Visual Prompt | Size | Mode | SROCC | Experiment Folder |
+|---------|---------------|------|------|-------|-------------------|
+| KADID-10k | Padding | 30px | Add | 0.924 | `SGD_mplug2_exp_04_kadid_padding_30px_add/` |
+| KonIQ-10k | Padding | 30px | Add | 0.852 | `SGD_mplug2_exp_05_koniq_padding_30px_add/` |
+| AGIQA-3k | Padding | 30px | Add | 0.810 | `SGD_mplug2_exp_06_agiqa_padding_30px_add/` |
 
 ### Using Pre-trained Checkpoints
 
-1. **Download a checkpoint**:
+1. **Download and extract the checkpoint archive**:
 ```bash
-wget https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/kadid_padding_30px_add.pth
+# Download from HuggingFace Hub
+wget https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/visual_prompt_ckpt_trained_on_mplug2.zip
+unzip visual_prompt_ckpt_trained_on_mplug2.zip
 ```
 
-2. **Update the checkpoint path** in `src/tester.py`:
+2. **Navigate to the desired experiment folder**:
+```bash
+cd SGD_mplug2_exp_04_kadid_padding_30px_add/
+# Check the latest checkpoint folder (highest number)
+ls -la checkpoint-*/
+# Look for best_model_checkpoint info in the final checkpoint
+```
+
+3. **Update the checkpoint path** in `src/tester.py`:
 ```python
-visual_prompt_path = "path/to/downloaded/checkpoint.pth"
+visual_prompt_path = "SGD_mplug2_exp_04_kadid_padding_30px_add/checkpoint-XXXX/visual_prompt.pth"
 ```
 
-3. **Run inference** as described in the [Inference](#inference) section.
+4. **Run inference** as described in the [Inference](#inference) section.
 
 ## 🏃 Quick Start
 
@@ -352,7 +365,7 @@ If you use this code in your research, please cite:
 ```bibtex
 @article{pixelprompt2024,
   title={PixelPrompt: Parameter-Efficient NR-IQA via Pixel-Space Visual Prompts in Multimodal LLMs},
-  author={[Author Names]},
+  author={Yahya Benmahane and Mohammed El Hassouni},
   journal={[Journal/Conference]},
   year={2024}
 }
@@ -375,4 +388,4 @@ Contributions are welcome! Please:
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
-- [Exploring Visual Prompts for Adapting Large-Scale Models](https://github.com/hjbahng/visual_prompting)
+- [I have to reference visual prompting]
