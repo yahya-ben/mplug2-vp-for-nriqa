@@ -1,13 +1,13 @@
 # PixelPrompt: Parameter-Efficient NR-IQA via Pixel-Space Visual Prompts in Multimodal LLMs
 
 <!-- TODO: Add paper image/figure here -->
-![PixelPrompt Overview](path/to/your/figure.png)
+![PixelPrompt Overview](./readme_assets/hero_figure.png)
 
 <!-- TODO: Add authors with links -->
-**Authors**: [Author Name 1](link), [Author Name 2](link), [Author Name 3](link)
+**Authors**: [Yahya Benmahane](https://www.linkedin.com/in/yahya-benmahane/), [Mohammed El Hassouni](https://scholar.google.com/citations?user=aIwj9L0AAAAJ&hl=fr)
 
 <!-- TODO: Add abstract -->
-**Abstract**: [Insert your paper abstract here]
+**Abstract**: In this paper, we propose PixelPrompt, a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach optimizes a negligible number of learnable parameters while keeping the base MLLM entirely fixed. During inference, these visual prompts are combined with images via addition and processed by the MLLM with the textual query "Rate the technical quality of the image." Extensive evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods, achieving 0.91 SROCC on KADID-10k. To our knowledge, this is the first work to leverage pixel-space visual prompts for NR-IQA, enabling efficient MLLM adaptation for low-level vision tasks.
 
 ---
 
