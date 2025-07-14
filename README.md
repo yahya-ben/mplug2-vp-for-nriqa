@@ -6,7 +6,8 @@
 <!-- TODO: Add authors with links -->
 **Authors**: [Yahya Benmahane](https://www.linkedin.com/in/yahya-benmahane/), [Mohammed El Hassouni](https://scholar.google.com/citations?user=aIwj9L0AAAAJ&hl=fr)
 
-<!-- TODO: Add abstract -->
+**Paper**: [Link to Paper](https://arxiv.org/abs/xxxx.xxxxx) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/your-username/pixelprompt-checkpoints)
+
 **Abstract**: In this paper, we propose PixelPrompt, a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach optimizes a negligible number of learnable parameters while keeping the base MLLM entirely fixed. During inference, these visual prompts are combined with images via addition and processed by the MLLM with the textual query "Rate the technical quality of the image." Extensive evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods, achieving 0.91 SROCC on KADID-10k. To our knowledge, this is the first work to leverage pixel-space visual prompts for NR-IQA, enabling efficient MLLM adaptation for low-level vision tasks.
 
 ---
@@ -20,11 +21,13 @@ This repository implements **PixelPrompt**, a novel parameter-efficient adaptati
 - **Multiple Visual Prompt Types**: Padding, Fixed Patches (Center/Top-Left), Full Overlay
 - **Multiple MLLM Support**: mPLUG-Owl2-7B and LLaVA-1.5-7B
 - **Comprehensive Evaluation**: Supports KADID-10k, KonIQ-10k, and AGIQA-3k datasets
+- **Pre-trained Checkpoints**: Available on HuggingFace Hub for immediate use
 
 ## 📋 Table of Contents
 
 - [Installation](#installation)
 - [Dataset Setup](#dataset-setup)
+- [Pre-trained Checkpoints](#pre-trained-checkpoints)
 - [Quick Start](#quick-start)
 - [Training](#training)
 - [Inference](#inference)
@@ -108,6 +111,34 @@ data/
 - **KADID-10k**: Move `split_kadid10k.csv` into the `kadid10k/` folder
 - **KonIQ-10k**: Uses its own original split files, no need to move
 - **AGIQA-3k**: Move `split_agiqa3k.csv` into the `AGIQA-3K/` folder; images are in the `images/` subfolder
+
+## 🤗 Pre-trained Checkpoints
+
+We provide pre-trained visual prompt checkpoints on **HuggingFace Hub** for immediate use:
+
+🔗 **[Download Checkpoints](https://huggingface.co/your-username/pixelprompt-checkpoints)**
+
+### Available Checkpoints
+
+| Dataset | Visual Prompt | Size | Mode | SROCC | Download |
+|---------|---------------|------|------|-------|----------|
+| KADID-10k | Padding | 30px | Add | 0.924 | [checkpoint](https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/kadid_padding_30px_add.pth) |
+| KonIQ-10k | Padding | 30px | Add | 0.852 | [checkpoint](https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/koniq_padding_30px_add.pth) |
+| AGIQA-3k | Padding | 30px | Add | 0.810 | [checkpoint](https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/agiqa_padding_30px_add.pth) |
+
+### Using Pre-trained Checkpoints
+
+1. **Download a checkpoint**:
+```bash
+wget https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/kadid_padding_30px_add.pth
+```
+
+2. **Update the checkpoint path** in `src/tester.py`:
+```python
+visual_prompt_path = "path/to/downloaded/checkpoint.pth"
+```
+
+3. **Run inference** as described in the [Inference](#inference) section.
 
 ## 🏃 Quick Start
 
