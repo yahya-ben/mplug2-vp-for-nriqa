@@ -125,7 +125,7 @@ The checkpoints are provided as `visual_prompt_ckpt_trained_on_mplug2.zip` conta
 
 | Dataset | Visual Prompt | Size | Mode | SROCC | Experiment Folder |
 |---------|---------------|------|------|-------|-------------------|
-| KADID-10k | Padding | 30px | Add | 0.924 | `SGD_mplug2_exp_04_kadid_padding_30px_add/` |
+| KADID-10k | Padding | 30px | Add | 0.910 | `SGD_mplug2_exp_04_kadid_padding_30px_add/` |
 | KonIQ-10k | Padding | 30px | Add | 0.852 | `SGD_mplug2_exp_05_koniq_padding_30px_add/` |
 | AGIQA-3k | Padding | 30px | Add | 0.810 | `SGD_mplug2_exp_06_agiqa_padding_30px_add/` |
 
@@ -305,7 +305,7 @@ Applies learnable prompt across entire image.
 
 | Dataset | SROCC | PLCC | Parameters |
 |---------|-------|------|------------|
-| KADID-10k | 0.924 | 0.926 | 52K |
+| KADID-10k | 0.910 | 0.905 | 52K |
 | KonIQ-10k | 0.852 | 0.874 | 52K |
 | AGIQA-3k | 0.810 | 0.860 | 52K |
 
