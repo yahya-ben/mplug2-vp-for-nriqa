@@ -16,7 +16,7 @@ This repository implements **PixelPrompt**, a novel parameter-efficient adaptati
 
 ## 🔥 Key Features
 
-- **Parameter-Efficient**: Only 52K trainable parameters vs 7B+ for full fine-tuning
+- **Parameter-Efficient**: Only 170K trainable parameters vs 7B+ for full fine-tuning
 - **Competitive Performance**: Achieves 0.91 SROCC on KADID-10k dataset
 - **Multiple Visual Prompt Types**: Padding, Fixed Patches (Center/Top-Left), Full Overlay
 - **Multiple MLLM Support**: mPLUG-Owl2-7B and LLaVA-1.5-7B
