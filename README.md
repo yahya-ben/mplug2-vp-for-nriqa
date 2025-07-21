@@ -1,4 +1,4 @@
-# PixelPrompt: Parameter-Efficient NR-IQA via Pixel-Space Visual Prompts in Multimodal LLMs
+# Parameter-Efficient Adaptation of mPLUG-Owl2 via Pixel-Level Visual Prompts for NR-IQA
 
 <!-- TODO: Add paper image/figure here -->
 ![PixelPrompt Overview](./readme_assets/hero_figure.png)
