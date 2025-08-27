@@ -8,7 +8,7 @@
 
 **Paper**: [Link to Paper](https://arxiv.org/abs/xxxx.xxxxx) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/your-username/pixelprompt-checkpoints)
 
-**Abstract**: In this paper, we propose a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach optimizes a negligible number of learnable parameters while keeping the base model entirely fixed. During inference, these visual prompts are combined with images via addition and processed by mPLUG-Owl2 with the textual query ``Rate the technical quality of the image." Evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods and specialized NR-IQA models, achieving 0.91 SRCC on KADID-10k. To our knowledge, this is the first work to leverage pixel-space visual prompts for NR-IQA, enabling efficient MLLM adaptation for low-level vision tasks.
+**Abstract**: In this paper, we propose a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach trains only $\sim600$K parameters at most ($<0.01\%$ of the base model), while keeping the underlying model fully frozen. During inference, these visual prompts are combined with images via addition and processed by mPLUG-Owl2 with the textual query ``Rate the technical quality of the image." Evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods and specialized NR-IQA models, achieving 0.91 SRCC on KADID-10k. To our knowledge, this is the first work to leverage pixel-space visual prompts for NR-IQA, enabling efficient MLLM adaptation for low-level vision tasks.
 
 ---
 
@@ -59,11 +59,6 @@ pip install --upgrade pip
 pip install -e .
 pip install 'numpy<2'
 pip install protobuf
-```
-
-#### For LLaVA-1.5:
-```bash
-pip install transformers scipy pandas torch accelerate torchvision
 ```
 
 #### Additional Dependencies:
@@ -192,7 +187,7 @@ The training uses HuggingFace's `Trainer` with custom components:
 
 1. **Model**: `VLMWithVisualPrompt` - combines frozen MLLM + trainable visual prompt
 2. **Loss**: Mean Squared Error (MSE) between predicted and ground truth quality scores  
-3. **Metrics**: SROCC and PLCC correlation coefficients
+3. **Metrics**: SRCC and PLCC correlation coefficients
 4. **Optimization**: SGD optimizer with configurable learning rates
 
 ### Key Training Parameters
@@ -230,9 +225,8 @@ python tester.py
 ### Output
 
 The inference script outputs:
-- SROCC (Spearman Rank Correlation Coefficient)
+- SRCC (Spearman Rank Correlation Coefficient)
 - PLCC (Pearson Linear Correlation Coefficient)
-- Individual predictions vs ground truth
 
 ## ⚙️ Configuration
 
@@ -253,7 +247,7 @@ quality_score_type: "good+fine_vs_poor+bad"
 training:
   output_dir: "outputs/my_experiment"
   num_train_epochs: 25
-  learning_rate: 0.01
+  learning_rate: 60
   per_device_train_batch_size: 32
   # ... other training parameters
 dataset:
@@ -305,15 +299,15 @@ Applies learnable prompt across entire image.
 
 | Dataset | SROCC | PLCC | Parameters |
 |---------|-------|------|------------|
-| KADID-10k | 0.910 | 0.905 | 52K |
-| KonIQ-10k | 0.852 | 0.874 | 52K |
-| AGIQA-3k | 0.810 | 0.860 | 52K |
+| KADID-10k | 0.910 | 0.905 | 600K |
+| KonIQ-10k | 0.852 | 0.874 | 600K |
+| AGIQA-3k | 0.810 | 0.860 | 600K |
 
 ### Comparison with Full Fine-tuning
 
 | Method | Parameters | KADID-10k SROCC |
 |--------|------------|------------------|
-| PixelPrompt | 52K | 0.910 |
+| Our Proposed Method | 600K | 0.910 |
 | Q-Align | 7B | 0.919 |
 | Q-Instruct | 7B | 0.706 |
 
@@ -363,12 +357,7 @@ To reproduce the paper results:
 If you use this code in your research, please cite:
 
 ```bibtex
-@article{pixelprompt2024,
-  title={PixelPrompt: Parameter-Efficient NR-IQA via Pixel-Space Visual Prompts in Multimodal LLMs},
-  author={Yahya Benmahane and Mohammed El Hassouni},
-  journal={[Journal/Conference]},
-  year={2024}
-}
+@article{}
 ```
 
 ## 🤝 Contributing
@@ -389,5 +378,6 @@ Contributions are welcome! Please:
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
 - [I have to reference visual prompting]
+
 
 
