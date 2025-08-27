@@ -8,11 +8,11 @@
 
 **Paper**: [Link to Paper](https://arxiv.org/abs/xxxx.xxxxx) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/your-username/pixelprompt-checkpoints)
 
-**Abstract**: In this paper, we propose PixelPrompt, a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach optimizes a negligible number of learnable parameters while keeping the base MLLM entirely fixed. During inference, these visual prompts are combined with images via addition and processed by the MLLM with the textual query ``Rate the technical quality of the image." Extensive evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods, achieving 0.91 SROCC on KADID-10k. To our knowledge, this is the first work to leverage pixel-space visual prompts for NR-IQA, enabling efficient MLLM adaptation for low-level vision tasks.
+**Abstract**: In this paper, we propose a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach optimizes a negligible number of learnable parameters while keeping the base model entirely fixed. During inference, these visual prompts are combined with images via addition and processed by mPLUG-Owl2 with the textual query ``Rate the technical quality of the image." Evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods and specialized NR-IQA models, achieving 0.91 SRCC on KADID-10k. To our knowledge, this is the first work to leverage pixel-space visual prompts for NR-IQA, enabling efficient MLLM adaptation for low-level vision tasks.
 
 ---
 
-This repository implements **PixelPrompt**, a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach optimizes a negligible number of learnable parameters while keeping the base MLLM entirely frozen.
+This repository implements our proposed method, a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach optimizes a negligible number of learnable parameters while keeping the base MLLM entirely frozen.
 
 ## 🔥 Key Features
 
@@ -389,4 +389,5 @@ Contributions are welcome! Please:
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
 - [I have to reference visual prompting]
+
 
