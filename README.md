@@ -143,10 +143,10 @@ ls -la checkpoint-*/
 
 3. **Update the configuration and checkpoint** in `src/tester.py`:
 ```python
-
+# Update config path
 config_path = "configs/final_mplug_owl2_configs/SGD_mplug2_exp_04_kadid_padding_30px_add.yaml"
 
-# - use "checkpoint-best" or specific checkpoint number
+# Update checkpoint name - use "checkpoint-best" or specific checkpoint number
 checkpoint_best = "checkpoint-best"  # or "checkpoint-XXXX" for specific epoch
 ```
 
@@ -202,6 +202,8 @@ The training uses HuggingFace's `Trainer` with custom components:
 - **Optimizer**: SGD
 - **Data Augmentation**: Random horizontal flipping
 - **Normalization**: Applied after visual prompt addition, before MLLM input
+- **Textual Prompt**: "Rate the technical quality of the image."
+- **Token Selection**: Positive tokens ("good", "fine"), Negative tokens ("poor", "bad")
 
 ### Training Command
 
@@ -295,14 +297,11 @@ Places a learnable square patch at top-left corner.
 Applies learnable prompt across entire image.
 - **Parameters**: `3 × H × W`
 
-### Combination Modes
-- **Addition**: `prompted_image = image + prompt`
-- **Multiplication**: `prompted_image = image × prompt`
-
 ### Implementation Details
 - Visual prompts are restricted to [-1, 1] range using tanh function
 - Final pixel values are clamped to [0, 1] range
 - Normalization is applied after visual prompt addition
+- Combination mode: Addition (`prompted_image = image + visual prompt`)
 
 ## 📈 Results
 
@@ -349,55 +348,17 @@ Applies learnable prompt across entire image.
 | MUSIQ | - | 0.916 |
 | DBCNN | 0.878 | 0.864 |
 
-## 🗂️ Repository Structure
-
-```
-├── src/
-│   ├── trainer.py              # Main training script
-│   ├── tester.py               # Inference script  
-│   ├── vlms_plus_prompters.py  # Combined VLM+Prompt model
-│   ├── vlms.py                 # Individual VLM implementations
-│   ├── prompters.py            # Visual prompt modules
-│   ├── datasets.py             # Dataset loading
-│   ├── collators.py            # Data collation
-│   └── utils.py                # Utility functions
-├── configs/
-│   └── mplug_owl2_configs/     # mPLUG-Owl2 configurations (33 experiments)
-├── data/                       # Dataset files and splits
-├── outputs/                    # Training outputs and checkpoints
-└── README.md
-```
-
-## ⚠️ Important Notes
-
-1. **GPU Memory**: Training requires significant GPU memory due to MLLM size
-2. **Gradient Flow**: Standard image processors break gradients - our implementation preserves them
-3. **Model Focus**: This codebase focuses on mPLUG-Owl2-7B for best performance
-4. **Hyperparameters**: Learning rates and batch sizes are dataset-specific
-5. **Textual Prompt**: Uses "Rate the technical quality of the image." for consistency
-6. **Token Selection**: Positive tokens: "good", "fine"; Negative tokens: "poor", "bad"
-
-## 🔬 Reproducing Results
-
-To reproduce the paper results:
-
-1. **Setup environment** following installation instructions
-2. **Download and organize datasets** in `data/` folder following the structure above
-3. **Run predefined experiments**:
-   ```bash
-   # Best results: 30px padding with addition
-   python trainer.py 5   # KonIQ-10k + 30px padding
-   python trainer.py 4   # KADID-10k + 30px padding  
-   python trainer.py 6   # AGIQA-3k + 30px padding
-   ```
-4. **Evaluate** using `tester.py` with corresponding checkpoints
-
 ## 📝 Citation
 
-If you use this code in your research, please cite:
+If you use this code in your research, please cite our paper:
 
 ```bibtex
-@article{}
+@article{benmahane2024parameter,
+  title={Parameter-Efficient Adaptation of mPLUG-Owl2 via Pixel-Level Visual Prompts for NR-IQA},
+  author={Benmahane, Yahya and El Hassouni, Mohammed},
+  journal={arXiv preprint},
+  year={2024}
+}
 ```
 
 ## 🤝 Contributing
@@ -408,13 +369,9 @@ Contributions are welcome! Please:
 3. Make your changes  
 4. Submit a pull request
 
-## 📄 License
-
-...
-
 ## 🙏 Acknowledgments
 
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
-- Visual prompting literature for inspiration
+- [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
