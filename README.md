@@ -1,14 +1,14 @@
 # Parameter-Efficient Adaptation of mPLUG-Owl2 via Pixel-Level Visual Prompts for NR-IQA
 
 <!-- TODO: Add paper image/figure here -->
-![PixelPrompt Overview](./readme_assets/hero_figure.png)
+![Method Overview](./readme_assets/hero_figure.png)
 
 <!-- TODO: Add authors with links -->
 **Authors**: [Yahya Benmahane](https://www.linkedin.com/in/yahya-benmahane/), [Mohammed El Hassouni](https://scholar.google.com/citations?user=aIwj9L0AAAAJ&hl=fr)
 
-**Paper**: [Link to Paper](https://arxiv.org/abs/xxxx.xxxxx) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/your-username/pixelprompt-checkpoints)
+**Paper**: [Link to Paper](https://arxiv.org/abs/xxxx.xxxxx) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/your-username/visual-prompt-checkpoints)
 
-**Abstract**: In this paper, we propose a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach trains only 600K parameters at most (<0.01% of the base model), while keeping the underlying model fully frozen. During inference, these visual prompts are combined with images via addition and processed by mPLUG-Owl2 with the textual query "Rate the technical quality of the image." Evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods and specialized NR-IQA models, achieving 0.91 SRCC on KADID-10k. To our knowledge, this is the first work to leverage pixel-space visual prompts for NR-IQA, enabling efficient MLLM adaptation for low-level vision tasks.
+**Abstract**: In this paper, we propose a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach trains only ~600K parameters at most (<0.01% of the base model), while keeping the underlying model fully frozen. During inference, these visual prompts are combined with images via addition and processed by mPLUG-Owl2 with the textual query "Rate the technical quality of the image." Evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods and specialized NR-IQA models, achieving 0.93 SRCC on KADID-10k. To our knowledge, this is the first work to leverage pixel-space visual prompts for NR-IQA, enabling efficient MLLM adaptation for low-level vision tasks.
 
 ---
 
@@ -16,8 +16,8 @@ This repository implements our proposed method, a novel parameter-efficient adap
 
 ## 🔥 Key Features
 
-- **Parameter-Efficient**: Only 170K trainable parameters vs 7B+ for full fine-tuning
-- **Competitive Performance**: Achieves 0.91 SROCC on KADID-10k dataset
+- **Parameter-Efficient**: Only ~600K trainable parameters vs 7B+ for full fine-tuning
+- **Competitive Performance**: Achieves 0.93 SROCC on KADID-10k dataset
 - **Multiple Visual Prompt Types**: Padding, Fixed Patches (Center/Top-Left), Full Overlay
 - **Multiple MLLM Support**: mPLUG-Owl2-7B and LLaVA-1.5-7B
 - **Comprehensive Evaluation**: Supports KADID-10k, KonIQ-10k, and AGIQA-3k datasets
@@ -112,7 +112,7 @@ data/
 
 We provide pre-trained visual prompt checkpoints on **HuggingFace Hub** for immediate use:
 
-🔗 **[Download Checkpoints](https://huggingface.co/your-username/pixelprompt-checkpoints)**
+🔗 **[Download Checkpoints](https://huggingface.co/your-username/visual-prompt-checkpoints)**
 
 ### Available Checkpoints
 
@@ -120,7 +120,7 @@ The checkpoints are provided as `visual_prompt_ckpt_trained_on_mplug2.zip` conta
 
 | Dataset | Visual Prompt | Size | Mode | SROCC | Experiment Folder |
 |---------|---------------|------|------|-------|-------------------|
-| KADID-10k | Padding | 30px | Add | 0.910 | `SGD_mplug2_exp_04_kadid_padding_30px_add/` |
+| KADID-10k | Padding | 30px | Add | 0.932 | `SGD_mplug2_exp_04_kadid_padding_30px_add/` |
 | KonIQ-10k | Padding | 30px | Add | 0.852 | `SGD_mplug2_exp_05_koniq_padding_30px_add/` |
 | AGIQA-3k | Padding | 30px | Add | 0.810 | `SGD_mplug2_exp_06_agiqa_padding_30px_add/` |
 
@@ -129,7 +129,7 @@ The checkpoints are provided as `visual_prompt_ckpt_trained_on_mplug2.zip` conta
 1. **Download and extract the checkpoint archive**:
 ```bash
 # Download from HuggingFace Hub
-wget https://huggingface.co/your-username/pixelprompt-checkpoints/resolve/main/visual_prompt_ckpt_trained_on_mplug2.zip
+wget https://huggingface.co/your-username/visual-prompt-checkpoints/resolve/main/visual_prompt_ckpt_trained_on_mplug2.zip
 unzip visual_prompt_ckpt_trained_on_mplug2.zip
 ```
 
@@ -196,6 +196,8 @@ The training uses HuggingFace's `Trainer` with custom components:
 - **Learning Rate**: 60 (KADID-10k), varies by dataset
 - **Epochs**: 25 (KADID-10k), 35 (AGIQA-3k)
 - **Optimizer**: SGD
+- **Data Augmentation**: Random horizontal flipping
+- **Normalization**: Applied after visual prompt addition, before MLLM input
 
 ### Training Command
 
@@ -293,23 +295,55 @@ Applies learnable prompt across entire image.
 - **Addition**: `prompted_image = image + prompt`
 - **Multiplication**: `prompted_image = image × prompt`
 
+### Implementation Details
+- Visual prompts are restricted to [-1, 1] range using tanh function
+- Final pixel values are clamped to [0, 1] range
+- Normalization is applied after visual prompt addition
+
 ## 📈 Results
 
 ### Best Performance (30px Padding + Addition)
 
 | Dataset | SROCC | PLCC | Parameters |
 |---------|-------|------|------------|
-| KADID-10k | 0.910 | 0.905 | 600K |
-| KonIQ-10k | 0.852 | 0.874 | 600K |
-| AGIQA-3k | 0.810 | 0.860 | 600K |
+| KADID-10k | 0.932 | 0.929 | ~600K |
+| KonIQ-10k | 0.852 | 0.874 | ~600K |
+| AGIQA-3k | 0.810 | 0.860 | ~600K |
 
-### Comparison with Full Fine-tuning
+### Performance Across Visual Prompt Types
 
-| Method | Parameters | KADID-10k SROCC |
-|--------|------------|------------------|
-| Our Proposed Method | 600K | 0.910 |
-| Q-Align | 7B | 0.919 |
-| Q-Instruct | 7B | 0.706 |
+| Prompt Type | Size | KADID-10k SROCC | KonIQ-10k SROCC | AGIQA-3k SROCC |
+|-------------|------|-----------------|-----------------|----------------|
+| Padding | 10px | 0.880 | 0.805 | 0.802 |
+| Padding | 30px | **0.932** | **0.852** | **0.810** |
+| Fixed Patch (Center) | 10px | 0.390 | 0.487 | 0.435 |
+| Fixed Patch (Center) | 30px | 0.806 | 0.647 | 0.725 |
+| Fixed Patch (Top-Left) | 10px | 0.465 | 0.551 | 0.564 |
+| Fixed Patch (Top-Left) | 30px | 0.520 | 0.635 | 0.755 |
+| Full Overlay | — | 0.887 | 0.693 | 0.624 |
+
+### Comparison with State-of-the-Art Methods
+
+| Method | KADID-10k SROCC | KonIQ-10k SROCC | AGIQA-3k SROCC | Parameters |
+|--------|-----------------|-----------------|----------------|------------|
+| **Our Method** | **0.932** | **0.852** | **0.810** | ~600K |
+| Q-Align | 0.919 | 0.940 | 0.727 | 7B |
+| Q-Instruct | 0.706 | 0.911 | 0.772 | 7B |
+| LIQE | 0.930 | 0.919 | - | - |
+| MP-IQE | 0.941 | 0.898 | - | - |
+| MCPF-IQA | - | 0.918 | 0.872 | - |
+| Q-Adapt | 0.769 | 0.878 | 0.757 | - |
+
+### Comparison with Specialized NR-IQA Models
+
+| Method | KADID-10k SROCC | KonIQ-10k SROCC |
+|--------|-----------------|-----------------|
+| **Our Method** | **0.932** | 0.852 |
+| HyperIQA | 0.872 | 0.906 |
+| TreS | 0.858 | 0.928 |
+| UNIQUE | 0.878 | 0.896 |
+| MUSIQ | - | 0.916 |
+| DBCNN | 0.878 | 0.864 |
 
 ## 🗂️ Repository Structure
 
@@ -336,6 +370,8 @@ Applies learnable prompt across entire image.
 2. **Gradient Flow**: Standard image processors break gradients - our implementation preserves them
 3. **Model Focus**: This codebase focuses on mPLUG-Owl2-7B for best performance
 4. **Hyperparameters**: Learning rates and batch sizes are dataset-specific
+5. **Textual Prompt**: Uses "Rate the technical quality of the image." for consistency
+6. **Token Selection**: Positive tokens: "good", "fine"; Negative tokens: "poor", "bad"
 
 ## 🔬 Reproducing Results
 
@@ -377,9 +413,4 @@ Contributions are welcome! Please:
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
-- [I have to reference visual prompting]
-
-
-
-
-
+- Visual prompting literature for inspiration
