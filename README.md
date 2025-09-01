@@ -113,7 +113,7 @@ data/
 
 We provide pre-trained visual prompt checkpoints on **HuggingFace Hub** for immediate use:
 
-🔗 **[Download Checkpoints](https://huggingface.co/your-username/visual-prompt-checkpoints)**
+🔗 **[Download Checkpoints](https://huggingface.co/yahya007/mplug2-vp-for-nriqa/tree/main)**
 
 ### Available Checkpoints
 
@@ -363,6 +363,7 @@ Contributions are welcome! Please:
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
+
 
 
 
