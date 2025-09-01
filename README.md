@@ -6,7 +6,7 @@
 <!-- TODO: Add authors with links -->
 **Authors**: [Yahya Benmahane](https://www.linkedin.com/in/yahya-benmahane/), [Mohammed El Hassouni](https://scholar.google.com/citations?user=aIwj9L0AAAAJ&hl=fr)
 
-**Paper**: [Link to Paper](https://arxiv.org/abs/xxxx.xxxxx) (soon) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/your-username/visual-prompt-checkpoints)(soon)
+**Paper**: [Link to Paper](https://arxiv.org/abs/xxxx.xxxxx) (will be released soon) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/yahya007/mplug2-vp-for-nriqa)
 
 **Abstract**: In this paper, we propose a novel parameter-efficient adaptation method for No-Reference Image Quality Assessment (NR-IQA) using visual prompts optimized in pixel-space. Unlike full fine-tuning of Multimodal Large Language Models (MLLMs), our approach trains only ~600K parameters at most (<0.01% of the base model), while keeping the underlying model fully frozen. During inference, these visual prompts are combined with images via addition and processed by mPLUG-Owl2 with the textual query "Rate the technical quality of the image." Evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods and specialized NR-IQA models, achieving 0.93 SRCC on KADID-10k. To our knowledge, this is the first work to leverage pixel-space visual prompts for NR-IQA, enabling efficient MLLM adaptation for low-level vision tasks.
 
@@ -34,7 +34,7 @@ This repository implements our proposed method.
 - [Configuration](#-configuration)
 - [Visual Prompt Types](#-visual-prompt-types)
 - [Results](#-results)
-- [Citation](#-citation)
+- [Citation](#-citation) (soon)
 - [Contributing](#-contributing)
 - [Acknowledgments](#-acknowledgments)
 
@@ -349,19 +349,6 @@ Applies learnable prompt across entire image.
 | MUSIQ | - | 0.916 |
 | DBCNN | 0.878 | 0.864 |
 
-## 📝 Citation
-
-If you use this code in your research, please cite our paper:
-
-```bibtex
-@article{benmahane2024parameter,
-  title={Parameter-Efficient Adaptation of mPLUG-Owl2 via Pixel-Level Visual Prompts for NR-IQA},
-  author={Benmahane, Yahya and El Hassouni, Mohammed},
-  journal={arXiv preprint},
-  year={2024}
-}
-```
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please:
@@ -376,6 +363,7 @@ Contributions are welcome! Please:
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
+
 
 
 
