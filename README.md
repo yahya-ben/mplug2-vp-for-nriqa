@@ -141,9 +141,13 @@ ls -la checkpoint-*/
 # Look for best_model_checkpoint info in the final checkpoint
 ```
 
-3. **Update the checkpoint path** in `src/tester.py`:
+3. **Update the configuration and checkpoint** in `src/tester.py`:
 ```python
-visual_prompt_path = "SGD_mplug2_exp_04_kadid_padding_30px_add/checkpoint-XXXX/visual_prompt.pth"
+
+config_path = "configs/final_mplug_owl2_configs/SGD_mplug2_exp_04_kadid_padding_30px_add.yaml"
+
+# - use "checkpoint-best" or specific checkpoint number
+checkpoint_best = "checkpoint-best"  # or "checkpoint-XXXX" for specific epoch
 ```
 
 4. **Run inference** as described in the [Inference](#inference) section.
@@ -177,7 +181,7 @@ cd src
 python tester.py
 ```
 
-Modify the config path and checkpoint path in `tester.py` for your specific experiment.
+Modify the config path and checkpoint name in `tester.py` for your specific experiment.
 
 ## 🎯 Training
 
@@ -215,8 +219,8 @@ Where `<experiment_number>` corresponds to predefined experiments (1-33):
 ### Running Inference
 
 1. **Modify** `src/tester.py` to specify:
-   - Configuration file path
-   - Checkpoint path for trained visual prompt
+   - Configuration file path: `config_path = "configs/final_mplug_owl2_configs/SGD_mplug2_exp_01_kadid_padding_10px_add.yaml"`
+   - Checkpoint name: `checkpoint_best = "checkpoint-best"` (or specific checkpoint like "checkpoint-1000")
    
 2. **Run inference**:
 ```bash
@@ -414,4 +418,3 @@ Contributions are welcome! Please:
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
 - Visual prompting literature for inspiration
-
