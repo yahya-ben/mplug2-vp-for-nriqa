@@ -130,7 +130,7 @@ The checkpoints are provided as `visual_prompt_ckpt_trained_on_mplug2.zip` conta
 1. **Download and extract the checkpoint archive**:
 ```bash
 # Download from HuggingFace Hub
-wget https://huggingface.co/your-username/visual-prompt-checkpoints/resolve/main/visual_prompt_ckpt_trained_on_mplug2.zip
+wget https://huggingface.co/yahya007/mplug2-vp-for-nriqa/blob/main/visual_prompt_ckpt_trained_on_mplug2.zip
 unzip visual_prompt_ckpt_trained_on_mplug2.zip
 ```
 
@@ -363,6 +363,7 @@ Contributions are welcome! Please:
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
+
 
 
 
