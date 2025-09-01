@@ -25,17 +25,18 @@ This repository implements our proposed method.
 
 ## 📋 Table of Contents
 
-- [Installation](#installation)
-- [Dataset Setup](#dataset-setup)
-- [Pre-trained Checkpoints](#pre-trained-checkpoints)
-- [Quick Start](#quick-start)
-- [Training](#training)
-- [Inference](#inference)
-- [Configuration](#configuration)
-- [Visual Prompt Types](#visual-prompt-types)
-- [Results](#results)
-- [Contact](#contact)
-- [Citation](#citation)
+- [Installation](#-installation)
+- [Dataset Setup](#-dataset-setup)
+- [Pre-trained Checkpoints](#-pre-trained-checkpoints)
+- [Quick Start](#-quick-start)
+- [Training](#-training)
+- [Inference](#-inference)
+- [Configuration](#-configuration)
+- [Visual Prompt Types](#-visual-prompt-types)
+- [Results](#-results)
+- [Citation](#-citation)
+- [Contributing](#-contributing)
+- [Acknowledgments](#-acknowledgments)
 
 ## 🚀 Installation
 
