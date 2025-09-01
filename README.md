@@ -1,9 +1,7 @@
 # Parameter-Efficient Adaptation of mPLUG-Owl2 via Pixel-Level Visual Prompts for NR-IQA
 
-<!-- TODO: Add paper image/figure here -->
 ![Method Overview](./hero_figure.png)
 
-<!-- TODO: Add authors with links -->
 **Authors**: [Yahya Benmahane](https://www.linkedin.com/in/yahya-benmahane/), [Mohammed El Hassouni](https://scholar.google.com/citations?user=aIwj9L0AAAAJ&hl=fr)
 
 **Paper**: [Link to Paper](https://arxiv.org/abs/xxxx.xxxxx) (will be released soon) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/yahya007/mplug2-vp-for-nriqa)
@@ -363,6 +361,7 @@ Contributions are welcome! Please:
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
+
 
 
 
