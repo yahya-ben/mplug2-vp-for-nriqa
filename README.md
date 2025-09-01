@@ -19,7 +19,7 @@ This repository implements our proposed method.
 - **Parameter-Efficient**: Only ~600K trainable parameters vs 7B+ for full fine-tuning
 - **Competitive Performance**: Achieves 0.93 SROCC on KADID-10k dataset
 - **Multiple Visual Prompt Types**: Padding, Fixed Patches (Center/Top-Left), Full Overlay
-- **Multiple MLLM Support**: mPLUG-Owl2-7B and LLaVA-1.5-7B
+- **Multiple MLLM Support**: mPLUG-Owl2-7B
 - **Comprehensive Evaluation**: Supports KADID-10k, KonIQ-10k, and AGIQA-3k datasets
 - **Pre-trained Checkpoints**: Available on HuggingFace Hub for immediate use
 
@@ -360,9 +360,9 @@ Contributions are welcome! Please:
 ## 📚 Acknowledgments
 
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
-- [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
+
 
 
 
