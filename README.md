@@ -370,9 +370,10 @@ Contributions are welcome! Please:
 3. Make your changes  
 4. Submit a pull request
 
-## 🙏 Acknowledgments
+## 📚 Acknowledgments
 
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - [LLaVA](https://github.com/haotian-liu/LLaVA) for the alternative MLLM implementation
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
+
