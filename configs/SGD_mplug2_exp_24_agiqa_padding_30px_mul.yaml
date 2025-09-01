@@ -1,0 +1,42 @@
+experiment_name: "SGD_mplug2_exp_24_agiqa_padding_30px_mul"
+model:
+  vlm_name: "mplug2"
+  visual_prompt:
+    type: "padding"
+    args:
+      size: 30
+      delta: 1
+      mode: "mul"
+      is_center: false
+quality_score_type: "good+fine_vs_poor+bad"
+training:
+  output_dir: "final_mplug_owl2_exps/SGD_mplug2_exp_24_agiqa_padding_30px_mul"
+  num_train_epochs: 35
+  learning_rate: 60
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 32
+  optim: "sgd"
+  # weight_decay: 0.0001 
+  weight_decay: 0
+  evaluation_strategy: "epoch"
+  save_strategy: "epoch"
+  gradient_accumulation_steps: 1
+  warmup_steps: 0
+  lr_scheduler_type: "constant"
+  load_best_model_at_end: true
+  metric_for_best_model: "metric"
+  greater_is_better: true
+  seed: 42
+dataset:
+  train:
+    path: "./data"
+    name: "agiqa"
+    split: "train"
+  eval:
+    path: "./data"
+    name: "agiqa"
+    split: "val"
+  test:
+    path: "./data"
+    name: "agiqa"
+    split: "test" 
