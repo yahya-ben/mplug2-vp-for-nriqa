@@ -1,4 +1,4 @@
-![Python](https://img.shields.io/badge/python-3.10-blue) ![HuggingFace](https://img.shields.io/badge/hub-checkpoints-orange) ![arXiv](https://img.shields.io/badge/arXiv-soon-lightgrey)
+![Python](https://img.shields.io/badge/python-3.10-blue) ![HuggingFace](https://img.shields.io/badge/hub-checkpoints-orange) [![arXiv](https://img.shields.io/badge/arXiv-2509.03494-lightgrey)](https://arxiv.org/abs/2509.03494)
 
 # Parameter-Efficient Adaptation of mPLUG-Owl2 via Pixel-Level Visual Prompts for NR-IQA
 
@@ -376,16 +376,6 @@ If you use this work, please cite our paper:
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
-
-
-
-
-
-
-
-
-
-
 
 
 
