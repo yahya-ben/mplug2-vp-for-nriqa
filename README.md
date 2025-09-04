@@ -357,11 +357,25 @@ Contributions are welcome! Please:
 3. Make your changes  
 4. Submit a pull request
 
+## ✍️ Citation
+
+If you use this work, please cite our paper:
+
+```bibtex
+@article{benmahaneHassouni2025mplugvpiqa,
+  title        = {Parameter-Efficient Adaptation of mPLUG-Owl2 via Pixel-Level Visual Prompts for NR-IQA},
+  author       = {Benmahane, Yahya and El Hassouni, Mohammed},
+  journal      = {arXiv preprint arXiv:2509.03494},
+  year         = {2025},
+  url          = {https://arxiv.org/abs/2509.03494}
+}
+
 ## 📚 Acknowledgments
 
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
+
 
 
 
