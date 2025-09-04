@@ -35,7 +35,7 @@ This repository implements our proposed method.
 - [Visual Prompt Types](#-visual-prompt-types)
 - [Results](#-results)
 - [Contributing](#-contributing)
-- [Citation](#-citation)
+- [Citation](#citation)
 - [Acknowledgments](#-acknowledgments)
 
 ## 🚀 Installation
@@ -357,6 +357,8 @@ Contributions are welcome! Please:
 3. Make your changes  
 4. Submit a pull request
 
+<a id="citation"></a>
+
 ## ✍️ Citation
 
 If you use this work, please cite our paper:
@@ -376,6 +378,3 @@ If you use this work, please cite our paper:
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
-
-
-
