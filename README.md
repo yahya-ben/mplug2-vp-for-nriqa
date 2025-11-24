@@ -1,10 +1,10 @@
-![Python](https://img.shields.io/badge/python-3.10-blue) ![HuggingFace](https://img.shields.io/badge/hub-checkpoints-orange) [![arXiv](https://img.shields.io/badge/arXiv-2509.03494-lightgrey)]()
+![Python](https://img.shields.io/badge/python-3.10-blue) ![HuggingFace](https://img.shields.io/badge/hub-checkpoints-orange)
 
 # Parameter-Efficient Adaptation of mPLUG-Owl2 via Pixel-Level Visual Prompts for NR-IQA
 
 ![Method Overview](./hero_figure.png)
 
-**Paper**: [Link to Paper]() | **Checkpoints**: [Available soon on HuggingFace Hub]()
+**Paper**: [Link to Paper]() | **Checkpoints**: [Will be released soon on HuggingFace Hub]()
 
 **Abstract**: In this paper, we propose a novel approach to No-Reference Image Quality Assessment (NR-IQA) by efficiently adapting a Multimodal Large Language Model (MLLM) through pixel-space visual prompts. Unlike full fine-tuning approaches that adapt MLLMs to specific tasks, our method trains only ∼600K parameters at most (<0.01% of the base model), while keeping the underlying model fully frozen. During inference, these visual prompts are combined with images via addition and processed by mPLUG-Owl2 with the textual query “Rate the technical quality of the image.” Evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods and specialized NR-IQA models, achieving 0.93 SRCC on KADID-10k.
 
@@ -108,9 +108,7 @@ data/
 
 ## 🤗 Pre-trained Checkpoints
 
-We provide pre-trained visual prompt checkpoints on **HuggingFace Hub** for immediate use:
-
-🔗 **[Download Checkpoints](https://huggingface.co/yahya007/mplug2-vp-for-nriqa/tree/main)**
+Pre-trained visual prompt checkpoints will be provided in an upcoming release.
 
 ### Available Checkpoints
 
@@ -127,7 +125,7 @@ The checkpoints are provided as `visual_prompt_ckpt_trained_on_mplug2.zip` conta
 1. **Download and extract the checkpoint archive**:
 ```bash
 # Download from HuggingFace Hub
-wget https://huggingface.co/yahya007/mplug2-vp-for-nriqa/blob/main/visual_prompt_ckpt_trained_on_mplug2.zip
+wget <checkpoint_download_link>
 unzip visual_prompt_ckpt_trained_on_mplug2.zip
 ```
 
@@ -359,5 +357,3 @@ Contributions are welcome! Please:
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
-
-
