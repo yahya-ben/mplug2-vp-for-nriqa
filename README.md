@@ -4,7 +4,9 @@
 
 ![Method Overview](./hero_figure.png)
 
-**Paper**: [Link to Paper]() | **Checkpoints**: [Will be released soon on HuggingFace Hub]()
+**Paper**: [arXiv (Benmahane & El Hassouni, 2025)](https://arxiv.org/abs/2509.03494) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/yahya007/mplug2-vp-for-nriqa)
+
+**Authors**: Yahya Benmahane, Mohammed El Hassouni
 
 **Abstract**: In this paper, we propose a novel approach to No-Reference Image Quality Assessment (NR-IQA) by efficiently adapting a Multimodal Large Language Model (MLLM) through pixel-space visual prompts. Unlike full fine-tuning approaches that adapt MLLMs to specific tasks, our method trains only ∼600K parameters at most (<0.01% of the base model), while keeping the underlying model fully frozen. During inference, these visual prompts are combined with images via addition and processed by mPLUG-Owl2 with the textual query “Rate the technical quality of the image.” Evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods and specialized NR-IQA models, achieving 0.93 SRCC on KADID-10k.
 
@@ -19,7 +21,7 @@ This repository implements our proposed method.
 - **Multiple Visual Prompt Types**: Padding, Fixed Patches (Center/Top-Left), Full Overlay
 - **Multiple MLLM Support**: mPLUG-Owl2-7B
 - **Comprehensive Evaluation**: Supports KADID-10k, KonIQ-10k, and AGIQA-3k datasets
-- **Pre-trained Checkpoints**: Will be released soon.
+- **Pre-trained Checkpoints**: Available on the [HuggingFace Hub](https://huggingface.co/yahya007/mplug2-vp-for-nriqa).
 
 ## 📋 Table of Contents
 
@@ -108,7 +110,7 @@ data/
 
 ## 🤗 Pre-trained Checkpoints
 
-Pre-trained visual prompt checkpoints will be provided in an upcoming release.
+Pre-trained visual prompt checkpoints are hosted on the [HuggingFace Hub](https://huggingface.co/yahya007/mplug2-vp-for-nriqa).
 
 ### Available Checkpoints
 
@@ -125,7 +127,7 @@ The checkpoints are provided as `visual_prompt_ckpt_trained_on_mplug2.zip` conta
 1. **Download and extract the checkpoint archive**:
 ```bash
 # Download from HuggingFace Hub
-wget <checkpoint_download_link>
+wget https://huggingface.co/yahya007/mplug2-vp-for-nriqa/resolve/main/visual_prompt_ckpt_trained_on_mplug2.zip
 unzip visual_prompt_ckpt_trained_on_mplug2.zip
 ```
 
