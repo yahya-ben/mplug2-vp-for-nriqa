@@ -6,7 +6,7 @@
 
 <!--**Checkpoints**: [HuggingFace Hub](https://huggingface.co/yahya007/mplug2-vp-for-nriqa)-->
 
-**Authors**: Yahya Benmahane, Mohammed El Hassouni
+**Authors**: [Yahya Benmahane](https://scholar.google.com/citations?user=7mQkpZIAAAAJ&hl=en), [Mohammed El Hassouni](https://scholar.google.com/citations?user=aIwj9L0AAAAJ&hl=fr)
 
 **Abstract**: In this paper, we propose a novel approach to No-Reference Image Quality Assessment (NR-IQA) by efficiently adapting a Multimodal Large Language Model (MLLM) through pixel-space visual prompts. Unlike full fine-tuning approaches that adapt MLLMs to specific tasks, our method trains only ∼600K parameters at most (<0.01% of the base model), while keeping the underlying model fully frozen. During inference, these visual prompts are combined with images via addition and processed by mPLUG-Owl2 with the textual query “Rate the technical quality of the image.” Evaluations across distortion types (synthetic, realistic, AI-generated) on KADID-10k, KonIQ-10k, and AGIQA-3k demonstrate competitive performance against full finetuned methods and specialized NR-IQA models, achieving 0.93 SRCC on KADID-10k.
 
@@ -359,5 +359,6 @@ Contributions are welcome! Please:
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
+
 
 
