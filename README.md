@@ -4,7 +4,8 @@
 
 ![Method Overview](./hero_figure.png)
 
-**Paper**: [arXiv (Benmahane & El Hassouni, 2025)](https://arxiv.org/abs/2509.03494) | **Checkpoints**: [HuggingFace Hub](https://huggingface.co/yahya007/mplug2-vp-for-nriqa)
+**Authors**: Yahya Benmahane, Mohammed El Hassouni
+<!--**Checkpoints**: [HuggingFace Hub](https://huggingface.co/yahya007/mplug2-vp-for-nriqa)-->
 
 **Authors**: Yahya Benmahane, Mohammed El Hassouni
 
@@ -359,3 +360,4 @@ Contributions are welcome! Please:
 - [mPLUG-Owl2](https://github.com/X-PLUG/mPLUG-Owl) for the base multimodal LLM
 - HuggingFace Transformers for the training framework
 - [Bahng et al. (2022)](https://arxiv.org/abs/2203.17274)
+
